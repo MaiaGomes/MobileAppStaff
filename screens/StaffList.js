@@ -15,7 +15,6 @@ const StaffList = ({ navigation }) => {
         
         const validStaff = response.data.filter(validateStaff);
         console.log('Valid staff data:', validStaff);
-        
         setStaff(validStaff);
       } catch (error) {
         console.error('Error fetching staff data:', error);
@@ -27,12 +26,12 @@ const StaffList = ({ navigation }) => {
   }, []);
 
   const validateStaff = (staff) => {
-    return staff.ID && staff.Name && staff.Phone && staff.Department && staff.Street;
+    return staff.id && staff.name && staff.phone && staff.department && staff.street;
   };
 
   const filteredStaff = staff.filter(s => 
-    s.Name && 
-    s.Name.trim().toLowerCase().includes(search.trim().toLowerCase())
+    s.name && 
+    s.name.trim().toLowerCase().includes(search.trim().toLowerCase())
   );
   console.log('Filtered staff:', filteredStaff);
 
@@ -48,10 +47,10 @@ const StaffList = ({ navigation }) => {
       {filteredStaff.length > 0 ? (
         <FlatList
           data={filteredStaff}
-          keyExtractor={(item) => item.ID.toString()}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigation.navigate('AddUpdateProfile', { id: item.ID })}>
-              <Text style={styles.staffItem}>{item.Name}</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('AddUpdateProfile', { id: item.id })}>
+              <Text style={styles.staffItem}>{item.name}</Text>
             </TouchableOpacity>
           )}
         />
