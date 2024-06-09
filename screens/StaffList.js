@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, FlatList, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import axios from 'axios';
+import { apiClient } from '../ApiClient';
 
 const StaffList = ({ navigation }) => {
   const [staff, setStaff] = useState([]);
@@ -10,7 +10,7 @@ const StaffList = ({ navigation }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:3000/api/staff/staff');
+        const response = await apiClient.get('/api/staff/staff');
         console.log('Fetched staff data:', response.data);
         
         const validStaff = response.data.filter(validateStaff);

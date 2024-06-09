@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
+import { apiClient } from '../ApiClient';
+
 const AddUpdateProfile = () => {
   const route = useRoute();
   const navigation = useNavigation();
@@ -16,8 +18,8 @@ const AddUpdateProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const staffResponse = await axios.get('http://127.0.0.1:3000/api/staff/staff');
-        const departmentResponse = await axios.get('http://127.0.0.1:3000/api/staff/departments');
+        const staffResponse = await apiClient.get('/api/staff/staff');
+        const departmentResponse = await apiClient.get('/api/staff/departments');
         console.log('Fetched staff data:', staffResponse.data);
         console.log('Fetched department data:', departmentResponse.data);
         setStaff(staffResponse.data);
