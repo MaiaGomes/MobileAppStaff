@@ -10,7 +10,7 @@ const StaffList = ({ navigation }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://10.0.0.165:3000/api/staff/staff');
+        const response = await axios.get('http://127.0.0.1:3000/api/staff/staff');
         console.log('Fetched staff data:', response.data);
         
         const validStaff = response.data.filter(validateStaff);
